@@ -1,57 +1,54 @@
+import { useState } from "react";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Dashboard from "./pages/Dashboard";
+import Analytics from "./pages/Analytics";
+
 function App() {
-  return (
+  const [page, setPage] = useState("home");
+
+  const Home = () => (
     <div>
       <section
         style={{
-          background: "linear-gradient(135deg,#0f9d58,#34a853)",
+          background: "#16a34a",
           color: "white",
           textAlign: "center",
           padding: "100px 20px",
         }}
       >
-        <h1 style={{ fontSize: "60px", marginBottom: "20px" }}>DhanSethu</h1>
+        <h1>DhanSethu</h1>
+        <h2>Your Financial Bridge</h2>
 
-        <p style={{ fontSize: "22px", marginBottom: "30px" }}>
-          Your Financial Bridge
+        <p>
+          Manage expenses, budgets, loans and savings from a single dashboard.
         </p>
-
-        <button
-          style={{
-            padding: "12px 24px",
-            border: "none",
-            borderRadius: "8px",
-            fontSize: "16px",
-            cursor: "pointer",
-          }}
-        >
-          Get Started
-        </button>
       </section>
+    </div>
+  );
 
-      <section
+  return (
+    <div>
+      <nav
         style={{
           display: "flex",
-          gap: "20px",
-          justifyContent: "center",
-          padding: "50px",
-          flexWrap: "wrap",
+          gap: "15px",
+          padding: "15px",
+          background: "#111827",
         }}
       >
-        <div style={{ border: "1px solid #ddd", padding: "20px", width: "250px" }}>
-          <h3>Expense Tracking</h3>
-          <p>Track daily expenses effortlessly.</p>
-        </div>
+        <button onClick={() => setPage("home")}>Home</button>
+        <button onClick={() => setPage("login")}>Login</button>
+        <button onClick={() => setPage("register")}>Register</button>
+        <button onClick={() => setPage("dashboard")}>Dashboard</button>
+        <button onClick={() => setPage("analytics")}>Analytics</button>
+      </nav>
 
-        <div style={{ border: "1px solid #ddd", padding: "20px", width: "250px" }}>
-          <h3>Budget Planning</h3>
-          <p>Create monthly budgets and stay on target.</p>
-        </div>
-
-        <div style={{ border: "1px solid #ddd", padding: "20px", width: "250px" }}>
-          <h3>Analytics</h3>
-          <p>Understand spending habits with insights.</p>
-        </div>
-      </section>
+      {page === "home" && <Home />}
+      {page === "login" && <Login />}
+      {page === "register" && <Register />}
+      {page === "dashboard" && <Dashboard />}
+      {page === "analytics" && <Analytics />}
     </div>
   );
 }
