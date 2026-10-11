@@ -1,4 +1,6 @@
 import { useState } from "react";
+
+import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
@@ -7,47 +9,104 @@ import Analytics from "./pages/Analytics";
 function App() {
   const [page, setPage] = useState("home");
 
-  const Home = () => (
-    <div>
-      <section
-        style={{
-          background: "#16a34a",
-          color: "white",
-          textAlign: "center",
-          padding: "100px 20px",
-        }}
-      >
-        <h1>DhanSethu</h1>
-        <h2>Your Financial Bridge</h2>
+  const navButton = {
+    background: "transparent",
+    color: "white",
+    border: "1px solid #374151",
+    padding: "10px 18px",
+    borderRadius: "12px",
+    cursor: "pointer",
+    fontWeight: "600",
+    fontSize: "14px",
+  };
 
-        <p>
-          Manage expenses, budgets, loans and savings from a single dashboard.
-        </p>
-      </section>
-    </div>
-  );
+  const activeButton = {
+    ...navButton,
+    background: "#16a34a",
+    border: "1px solid #16a34a",
+    boxShadow: "0 4px 14px rgba(22,163,74,0.35)",
+  };
 
   return (
     <div>
       <nav
         style={{
+          background: "#0f172a",
+          padding: "16px 24px",
           display: "flex",
-          gap: "15px",
-          padding: "15px",
-          background: "#111827",
+          justifyContent: "space-between",
+          alignItems: "center",
+          flexWrap: "wrap",
+          gap: "12px",
         }}
       >
-        <button onClick={() => setPage("home")}>Home</button>
-        <button onClick={() => setPage("login")}>Login</button>
-        <button onClick={() => setPage("register")}>Register</button>
-        <button onClick={() => setPage("dashboard")}>Dashboard</button>
-        <button onClick={() => setPage("analytics")}>Analytics</button>
+        <div>
+          <h2
+            style={{
+              color: "white",
+              margin: 0,
+            }}
+          >
+            Dhan Setu
+          </h2>
+
+          <small
+            style={{
+              color: "#94a3b8",
+            }}
+          >
+            Loan Services Platform
+          </small>
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            gap: "10px",
+            flexWrap: "wrap",
+          }}
+        >
+          <button
+            style={page === "home" ? activeButton : navButton}
+            onClick={() => setPage("home")}
+          >
+            Home
+          </button>
+
+          <button
+            style={page === "dashboard" ? activeButton : navButton}
+            onClick={() => setPage("dashboard")}
+          >
+            Dashboard
+          </button>
+
+          <button
+            style={page === "login" ? activeButton : navButton}
+            onClick={() => setPage("login")}
+          >
+            CRM
+          </button>
+
+          <button
+            style={page === "register" ? activeButton : navButton}
+            onClick={() => setPage("register")}
+          >
+            Admin
+          </button>
+
+          <button
+            style={page === "analytics" ? activeButton : navButton}
+            onClick={() => setPage("analytics")}
+          >
+            Reports
+          </button>
+        </div>
       </nav>
 
       {page === "home" && <Home />}
+      {page === "dashboard" && <Dashboard />}
       {page === "login" && <Login />}
       {page === "register" && <Register />}
-      {page === "dashboard" && <Dashboard />}
       {page === "analytics" && <Analytics />}
     </div>
   );

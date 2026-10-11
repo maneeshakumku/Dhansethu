@@ -1,7 +1,7 @@
 export default function Register() {
   return (
-    <div style={{padding:"50px"}}>
-      <h1>Create Account</h1>
+    <div style={{ padding: "50px" }}>
+      <h1>Admin Registration</h1>
 
       <input placeholder="Name" />
       <br /><br />
@@ -12,7 +12,7 @@ export default function Register() {
       <input placeholder="Phone" />
       <br /><br />
 
-      <button>Register</button>
+      <button>Create Account</button>
     </div>
   );
 }
