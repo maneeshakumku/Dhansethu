@@ -1,4 +1,5 @@
-export default function Home() {
+import Logo from "../Logo";
+export default function Home({ signedIn }) {
   return (
     <div
       style={{
@@ -10,7 +11,7 @@ export default function Home() {
       {/* NAVBAR */}
       <nav
         style={{
-          background: "#0f172a",
+          background: "#0a1f4d",
           color: "white",
           padding: "16px 32px",
           display: "flex",
@@ -19,7 +20,7 @@ export default function Home() {
           flexWrap: "wrap",
         }}
       >
-        <h2 style={{ margin: 0 }}>Dhan Setu</h2>
+        <Logo />
 
         <div
           style={{
@@ -28,18 +29,28 @@ export default function Home() {
             flexWrap: "wrap",
           }}
         >
-          <span>CRM</span>
-          <span>Loans</span>
-          <span>Accounts</span>
-          <span>Reports</span>
-          <span>Admin</span>
+          {[
+            ["CRM", "#/crm"],
+            ["Loans", "#/loans"],
+            ["Reports", "#/reports"],
+          ].map(([label, href]) => (
+            <a key={label} href={href} style={{ color: "white", textDecoration: "none" }}>
+              {label}
+            </a>
+          ))}
+          <a
+            href={signedIn ? "#/dashboard" : "#/login"}
+            style={{ color: "#e3c15a", textDecoration: "none", fontWeight: 600 }}
+          >
+            {signedIn ? "Dashboard" : "Staff Login"}
+          </a>
         </div>
       </nav>
 
       {/* HERO */}
       <section
         style={{
-          background: "linear-gradient(135deg,#0f172a,#16a34a)",
+          background: "linear-gradient(135deg,#0a1f4d,#13307a)",
           color: "white",
           textAlign: "center",
           padding: "100px 20px",
@@ -60,7 +71,7 @@ export default function Home() {
             marginBottom: "20px",
           }}
         >
-          Integrated Loan Services Platform
+          Bridging Your Financial Dreams
         </h2>
 
         <p
@@ -78,9 +89,10 @@ export default function Home() {
 
         <div style={{ marginTop: "30px" }}>
           <button
+            onClick={() => (window.location.hash = "#/login")}
             style={{
-              background: "white",
-              color: "#16a34a",
+              background: "#e3c15a",
+              color: "#0a1f4d",
               border: "none",
               padding: "14px 28px",
               borderRadius: "10px",
@@ -93,6 +105,9 @@ export default function Home() {
           </button>
 
           <button
+            onClick={() =>
+              document.getElementById("modules")?.scrollIntoView({ behavior: "smooth" })
+            }
             style={{
               background: "transparent",
               color: "white",
@@ -138,7 +153,7 @@ export default function Home() {
                 boxShadow: "0 5px 15px rgba(0,0,0,0.08)",
               }}
             >
-              <h2 style={{ color: "#16a34a" }}>
+              <h2 style={{ color: "#a8841a" }}>
                 {number}
               </h2>
               <p>{label}</p>
@@ -149,6 +164,7 @@ export default function Home() {
 
       {/* FEATURES */}
       <section
+        id="modules"
         style={{
           padding: "60px 20px",
           textAlign: "center",
@@ -194,15 +210,17 @@ export default function Home() {
       {/* FOOTER */}
       <footer
         style={{
-          background: "#0f172a",
+          background: "#0a1f4d",
           color: "white",
           textAlign: "center",
           padding: "30px",
         }}
       >
-        <h3>Dhan Setu Loan Services</h3>
-        <p>
-          CRM • Loans • HR • Accounts • Reports
+        <Logo size={44} />
+        <p style={{ marginBottom: 4 }}>8-3-315/7/1, B R Raju Building, Maruthi Nagar, Yousufguda, Hyderabad, Telangana – 500045</p>
+        <p style={{ margin: 4 }}>+91 6300988789 · dhansetuloanservicespvtltd@gmail.com</p>
+        <p style={{ margin: 4, opacity: 0.7, fontSize: "13px" }}>
+          Loan approval, interest rates and terms are subject to applicable lender eligibility and policies.
         </p>
       </footer>
     </div>
